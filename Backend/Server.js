@@ -38,6 +38,18 @@ app.post('/user/signup', async(req,res)=>{
     }
 })
 
+app.get('/user/get', async(req,res)=>{
+    try{
+     const getuser = await user.find();
+     if(!getuser){
+        res.status(200).json({message:'user data not fond'});
+     }
+     res.status(200).json({message:'user data fetch successfull',user:getuser});
+    }
+    catch(err){
+        res.status(500).json({message:'Bad request'});
+    }
+})
 
 
 app.listen(3000,()=>{
