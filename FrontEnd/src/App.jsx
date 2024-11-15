@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 function App() {
+  const [data,setData]=useState([]);
   const [formData,setFormData]=useState({
     name:'',
     image:null
@@ -17,7 +18,8 @@ newFormData.append("image",formData.image);
 
 try{
   const response = await axios.post('http://localhost:3000/user/signup',newFormData);
-  console.log(response);
+  // console.log(response);
+  fetchData();
 }
 catch(err){
 console.log(err);
@@ -31,8 +33,21 @@ const handleImageChange = (e)=>{
   })
 }
 
+//get data from db
 
+const fetchData = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/user/get');
+    setData(response.data.user);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
+useEffect(() => {
 
+  fetchData();
+
+}, []);
   return (
     <div>
       <form>
@@ -40,6 +55,14 @@ const handleImageChange = (e)=>{
         image:<input type='file' name='image' onChange={handleImageChange}/>
         <button onClick={handleSubmit} type='reset'>Submit</button>
       </form>
+      <div style={{margin:'20px'}}>
+        {data.map((item,i)=>(
+          <div key={i}>
+            <div>{item.name}</div>
+            <div><img src={`http://localhost:3000/${item.image}`} height={'200px'}/></div>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
