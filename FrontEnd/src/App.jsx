@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Products from './Pages/Products';
 function App() {
   const [data,setData]=useState([]);
   const [formData,setFormData]=useState({
@@ -63,6 +64,7 @@ useEffect(() => {
           </div>
         ))}
       </div>
+      <Products/>
     </div>
   )
 }
