@@ -1,0 +1,12 @@
+table,tr,td,th{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.container{
+    height: 100vh;
+    margin-top: 200px;
+
+}
+table{
+    margin: 0 auto;
+}

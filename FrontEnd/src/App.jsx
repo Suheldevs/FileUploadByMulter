@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Products from './Pages/Products';
 import FileValidation from './Pages/FileValidation';
+import User from './Pages/User';
+import Video from './Pages/Video';
 function App() {
   const [data,setData]=useState([]);
   const [formData,setFormData]=useState({
@@ -65,8 +67,10 @@ useEffect(() => {
           </div>
         ))}
       </div>
-      <Products/>
+      {/* <Products/>
       <FileValidation/>
+      <User/> */}
+      <Video/>
     </div>
   )
 }
